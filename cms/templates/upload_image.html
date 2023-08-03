@@ -1,0 +1,81 @@
+{% extends "admin/base_site.html" %} {% load static %} {% block content %}
+<head>
+  <style>
+    .row {
+      display: grid;
+      grid-template-columns: repeat(18, 1fr);
+      grid-gap: 0.8rem;
+      flex-direction: row;
+    }
+
+    img {
+      width: 50px;
+      height: 50px;
+      border: 2px solid gray;
+      padding: 5px;
+    }
+
+    img:hover {
+      box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.5);
+    }
+
+    ul {
+      list-style:disc;
+    }
+
+    button {
+        background-color: #b8daf3;
+        color: #496f8b;
+        border: none;
+        width: 70px;
+        border-radius: 20px;
+        height: 20px;
+        font-size: 12px;
+    }
+  </style>
+</head>
+<h1>Upload Product Image</h1>
+<form method="post" enctype="multipart/form-data" multiple>
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit", style="background-color: #417690; color: white; height: 35px; width: 80px; border: none; cursor: pointer;">Upload</button>
+</form>
+
+<ul>
+  {% for url in new_image %}
+    <li>
+      <script src="{% static 'main.js' %}"></script>
+      <img src="{{ url }}" />
+      <button
+        onclick="copyLink( '{{ url }} ', '{{ forloop.counter }}' )"
+        id="{{ forloop.counter }}"
+      >
+        copy link
+      </button>
+    </li>
+  {% endfor %}
+</ul>
+
+<br />
+<br />
+
+<div class="container">
+  <br />
+  <br />
+  <h1>Uploaded Images</h1>
+  <div class="row">
+    {% for image in images %}
+    <div class="col-md-4 mb-3">
+      <div class="card">
+        <script src="{% static 'main.js' %}"></script>
+        <img
+          onclick="copyLink( '{{ image }} ', '{{ image.id }}')"
+          id="{{image.id }}"
+          src="{{ image }}"
+          class="card-img-top"
+        />
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

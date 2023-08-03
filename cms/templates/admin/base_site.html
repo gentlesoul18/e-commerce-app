@@ -1,0 +1,13 @@
+{% extends "admin/base.html" %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <style>
+    /* Custom styling for navigation bar */
+    #header { background-color: #222; }
+    #branding h1 a { color: #fff; }
+
+    /* Custom styling for body */
+    #content-main { padding: 20px; }
+  </style>
+{% endblock %}

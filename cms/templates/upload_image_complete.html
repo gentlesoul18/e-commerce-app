@@ -1,0 +1,24 @@
+{% extends "admin/base_site.html" %} {% load static %} 
+{% block content %}
+{% if new_image %}
+    <ul>
+        {% for url in new_image %}
+            <li>
+                <h1>Image{{ forloop.counter }} uploaded</h1>
+                <script src="{% static 'main.js' %}"></script>
+                <button onclick="copyLink( '{{ url }} ', '{{ forloop.counter }}' )" id="{{ forloop.counter }}">copy link</button>
+            </li>
+        {% endfor %}
+
+    </ul>
+{% else %}
+    <h1>No Image Uploaded</h1>
+{% endif %}
+
+{% endblock %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css"
+/>

@@ -1,0 +1,9 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+  <h1>Upload Vehicle CSV</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" style="background-color: #417690; color: white; height: 35px; width: 80px; border: none; cursor: pointer;">Upload</button>
+  </form>
+{% endblock %}
